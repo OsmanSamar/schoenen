@@ -1,0 +1,23 @@
+@import url('header.css');
+
+@import url('product-pagina.css');
+@import url('product.css');
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Kumbh Sans", sans-serif;
+  background-color:hsl(0, 0%, 100%);
+
+  :root {
+    --primary-orange: hsl(26, 100%, 55%);
+    --primary-orange-light: hsl(25, 100%, 94%);
+    --dark-blue: hsl(220, 13%, 13%);
+    --grayish-blue: hsl(219, 9%, 45%);
+    --light-grayish-blue: hsl(220, 14%, 75%);
+    --very-light-gray: hsl(223, 64%, 98%);
+    --white: hsl(0, 0%, 100%);
+    --overlay-color: hsl(0, 0%, 0%); /* Black with 75% opacity */
+  }
+}
