@@ -24,28 +24,10 @@
 
   <title>Frontend Mentor | E-commerce product page</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <!-- <style>
-      .attribution {
-        font-size: 11px;
-        text-align: center;
-      }
-      .attribution a {
-        color: hsl(228, 45%, 44%);
-      }
-    </style> -->
+ 
 </head>
 
 <body>
-  <!-- 
-  
-  These low-profile sneakers are your perfect casual wear companion. Featuring a 
-  durable rubber outer sole, they’ll withstand everything the weather can offer.
-  $125.00
-  50%
-  $250.00
-  0
-  Add to cart -->
   <?php include 'header.php'; ?>
   <?php include 'product.php'; ?>
 
@@ -72,11 +54,8 @@
       }
     });
 
+    
     // Swiper JS for product images
-
-
-
-    //  Swipers on Page 
     const thumbSwiperPage = new Swiper(".thumbSwiperPage", {
       spaceBetween: 10,
       slidesPerView: 4,
