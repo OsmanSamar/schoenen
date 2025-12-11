@@ -18,6 +18,10 @@
     href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Rasa:ital,wght@0,300..700;1,300..700&display=swap"
     rel="stylesheet" />
 
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
   <title>Frontend Mentor | E-commerce product page</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -67,6 +71,64 @@
         qtyInput.value = current - 1;
       }
     });
+
+    // Swiper JS for product images
+
+
+
+    //  Swipers on Page 
+    const thumbSwiperPage = new Swiper(".thumbSwiperPage", {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesProgress: true,
+    });
+
+    const mainSwiperPage = new Swiper(".mainSwiperPage", {
+      spaceBetween: 10,
+      thumbs: {
+        swiper: thumbSwiperPage,
+      },
+    });
+
+    //  Lightbox Swipers 
+    const thumbSwiperLightbox = new Swiper(".thumbSwiperLightbox", {
+      spaceBetween: 15,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesProgress: true,
+    });
+
+    const mainSwiperLightbox = new Swiper(".mainSwiperLightbox", {
+      spaceBetween: 10,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      thumbs: {
+        swiper: thumbSwiperLightbox,
+      },
+    });
+
+    // Open Lightbox 
+    const overlay = document.querySelector(".lightbox-overlay");
+    const closeBtn = document.querySelector(".close-btn");
+    const pageThumbs = document.querySelectorAll(".main-gallery .swiper-slide img");
+
+    pageThumbs.forEach((thumb, index) => {
+      thumb.addEventListener("click", () => {
+        overlay.style.display = "flex";
+        mainSwiperLightbox.slideTo(index, 0);
+      });
+    });
+
+    // Close Lightbox 
+    closeBtn.addEventListener("click", () => overlay.style.display = "none");
+    overlay.addEventListener("click", e => {
+      if (e.target === overlay) overlay.style.display = "none";
+    });
+
+
   </script>
 </body>
 

@@ -1,14 +1,73 @@
 <?php
 // Template Name: Product Page
 ?>
-<div class="container">
+<div class="container product-page">
     <div class="row">
         <div class="col-lg-6">
-            hoi
+        
+
+
+            <!-- Main Gallery (on page) -->
+<div class="gallery-container">
+  <div class="main-gallery swiper mainSwiperPage">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="images/image-product-1.jpg" /></div>
+      <div class="swiper-slide"><img src="images/image-product-2.jpg" /></div>
+      <div class="swiper-slide"><img src="images/image-product-3.jpg" /></div>
+      <div class="swiper-slide"><img src="images/image-product-4.jpg" /></div>
+    </div>
+  </div>
+
+  <div class="thumb-gallery swiper thumbSwiperPage">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="images/image-product-1-thumbnail.jpg" /></div>
+      <div class="swiper-slide"><img src="images/image-product-2-thumbnail.jpg" /></div>
+      <div class="swiper-slide"><img src="images/image-product-3-thumbnail.jpg" /></div>
+      <div class="swiper-slide"><img src="images/image-product-4-thumbnail.jpg" /></div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div class="lightbox-overlay">
+  <div class="lightbox">
+    <button class="close-btn">
+        ×
+    </button>
+
+    <!-- Main Image Swiper in Lightbox -->
+    <div class="swiper mainSwiperLightbox">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="images/image-product-1.jpg" /></div>
+        <div class="swiper-slide"><img src="images/image-product-2.jpg" /></div>
+        <div class="swiper-slide"><img src="images/image-product-3.jpg" /></div>
+        <div class="swiper-slide"><img src="images/image-product-4.jpg" /></div>
+      </div>
+
+      <!-- Custom Next/Prev Buttons -->
+      <div class="swiper-button-prev">
+        <img src="images/icon-previous.svg" />
+    </div>
+      <div class="swiper-button-next">
+        <img src="images/icon-next.svg" />
+    </div>
+    </div>
+
+    <!-- Thumbnails in Lightbox -->
+    <div class="swiper thumbSwiperLightbox">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="images/image-product-1-thumbnail.jpg" /></div>
+        <div class="swiper-slide"><img src="images/image-product-2-thumbnail.jpg" /></div>
+        <div class="swiper-slide"><img src="images/image-product-3-thumbnail.jpg" /></div>
+        <div class="swiper-slide"><img src="images/image-product-4-thumbnail.jpg" /></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
         </div>
-        <div class="col-12 col-lg-5">
+        <div class="col-12 col-lg-5 my-auto  py-4">
             <span class="sub-title">Sneaker Company</span>
             <h1>Fall Limited Edition Sneakers</h1>
             <p>
