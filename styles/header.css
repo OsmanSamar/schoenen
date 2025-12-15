@@ -72,8 +72,8 @@
   padding-bottom: 10px;
   color: hsl(219, 9%, 45%) !important;
   transition: color 0.2s ease;
-      opacity: 0.5;
-    font-weight: 600;
+      /* opacity: 0.5;
+    font-weight: 600; */
 }
 
 .navbar-nav .nav-link::after {
@@ -183,6 +183,10 @@
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
+  &:hover {
+   border: 2px solid hsl(26, 100%, 55%);  
+   border-radius: 50%;
+  }
 }
 
 .cart-wrapper {
