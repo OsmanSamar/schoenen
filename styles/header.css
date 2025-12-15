@@ -1,7 +1,10 @@
 .navbar-brand {
-  margin-right: 3rem;
+
   padding-top: unset;
   padding-bottom: unset;
+  @media (min-width: 992px) {
+    margin-right: 3rem;
+  }
 }
 
 /* Mobile menu styles */
@@ -13,17 +16,16 @@
   width: 250px;
   height: 100%;
   background: #fff;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   transition: left 0.3s ease;
   padding: 1rem;
   z-index: 1050;
- 
 }
 .mobile-menu .navbar-nav .nav-link {
   color: hsl(0, 0%, 0%) !important;
   font-weight: 700;
   font-size: 1.2rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mobile-menu.open {
@@ -40,25 +42,38 @@
   color: hsl(219, 9%, 45%);
 }
 
-
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 1.5rem;
     padding-left: 0.5rem;
   }
+
+   .navbar {
+  border-bottom: 1px solid hsl(220, 14%, 75%);
+}
 }
 
 /* Navmenu hover effect */
 
-.navbar {
+/* 
+@media (min-width: 992px) {
+ .navbar {
   border-bottom: 1px solid hsl(220, 14%, 75%);
 }
+} */
 
+
+.navbar-toggler-icon {
+  width: 1em;
+  height: 1em;
+}
 .navbar-nav .nav-link {
   position: relative;
   padding-bottom: 10px;
   color: hsl(219, 9%, 45%) !important;
   transition: color 0.2s ease;
+      opacity: 0.5;
+    font-weight: 600;
 }
 
 .navbar-nav .nav-link::after {
@@ -86,18 +101,18 @@
 
 /* Navbar Toggler */
 .navbar-toggler {
-    padding: .25rem .75rem;
-    font-size: 1.75rem;
-    line-height: 1;
-    background-color: transparent;
-    border: none;
-    border-radius: unset;
-    transition: box-shadow .15s ease-in-out;
+  padding: 0.25rem 0rem;
+  font-size: 1.75rem;
+  line-height: 1;
+  background-color: transparent;
+  border: none;
+  border-radius: unset;
+  transition: box-shadow 0.15s ease-in-out;
 }
 .navbar-toggler:focus {
-    text-decoration: none;
-    outline: 0;
-    box-shadow: none;
+  text-decoration: none;
+  outline: 0;
+  box-shadow: none;
 }
 
 /* Cart Styles */
@@ -112,9 +127,10 @@
   position: absolute;
   /* right: 0;
   top: 120%; */
-  right: -120px;
-  top: 190%;
-  min-width: 350px;
+  right: -53px;
+  /* right: 0; */
+  top: 300%;
+  min-width: 10rem;
   min-height: 200px;
   width: fit-content;
   height: fit-content;
@@ -122,6 +138,11 @@
   border-radius: 10px;
   border: unset;
   padding: 1.5rem 0rem;
+   max-width: calc(100vw - 53px);
+  @media (min-width: 992px) {
+     top: 190%;
+    right: -120px;
+  }
 }
 .dropdown-divider {
   color: hsl(220, 14%, 75%);
@@ -150,8 +171,10 @@
 .cart-icon {
   width: 20px;
   height: 20px;
-  object-fit: cover;
+  /* object-fit: cover; */
   cursor: pointer;
+   object-fit: contain;
+  filter: brightness(0);
 }
 
 .user-avatar {

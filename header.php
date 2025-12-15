@@ -2,7 +2,7 @@
   <div class="row">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light  py-4">
-      <div class="container-fluid px-0">
+      <div class="container-fluid px-0 flex-nowrap">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -10,6 +10,8 @@
         <a class="navbar-brand" href="#">
           <img src="images/logo.svg" alt="" />
         </a>
+
+      
 
         <!-- Custom offcanvas menu -->
         <div class="mobile-menu" id="mobileMenu">
@@ -22,30 +24,34 @@
             <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
           </ul>
         </div>
-      </div>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Collections</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Men</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Women</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-        <div class="d-flex align-items-center flex-row gap-5 me-2">
+
+        
+        <!-- Lg -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Collections</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Men</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Women</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+
+
+        <div class="d-flex align-items-center flex-row gap-lg-5 gap-3 ">
           <div class="cart-wrapper">
-
-            <div class="cart-wrapper position-relative">
-
+            <div class=" position-relative">
               <?php if ($cartCount > 0): ?>
                 <span class="cart-count"><?= $cartCount; ?></span>
               <?php endif; ?>
@@ -89,12 +95,8 @@
                         <img src="images/icon-delete.svg" alt="Delete">
                       </button>
                     </form>
-
                   </li>
                 <?php endforeach; ?>
-                <!-- <li>
-                    <hr class="dropdown-divider">
-                  </li> -->
                 <li class="dropdown-item mt-4">
                   <!-- <strong>Total: $<?= $total; ?></strong> -->
                   <button type="submit" class="add-to-cart-btn w-100">
@@ -107,14 +109,17 @@
               <?php endif; ?>
             </ul>
           </div>
+
+
           <img src="images/image-avatar.png" alt="User Avatar" class="user-avatar" />
         </div>
+
+
+
+
       </div>
+    </nav>
 
-</nav>
-      
+
   </div>
- 
-
-
 </div>

@@ -38,7 +38,6 @@ if (!empty($_SESSION['cart'])) {
 
   <title>Frontend Mentor | E-commerce product page</title>
 
-
 </head>
 
 <body>
@@ -52,109 +51,11 @@ if (!empty($_SESSION['cart'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>-->
 
 
-  <script>
 
-
-    // To open menu on mobile
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const toggler = document.querySelector(".navbar-toggler");
-      const mobileMenu = document.getElementById("mobileMenu");
-      const closeBtn = mobileMenu.querySelector(".close-btn");
-
-      toggler.addEventListener("click", () => {
-        mobileMenu.classList.add("open");
-      });
-
-      closeBtn.addEventListener("click", () => {
-        mobileMenu.classList.remove("open");
-      });
-
-      // Optional: close when clicking outside
-      document.addEventListener("click", (e) => {
-        if (!mobileMenu.contains(e.target) && !toggler.contains(e.target)) {
-          mobileMenu.classList.remove("open");
-        }
-      });
-    });
-
-    // To open dropmenu
-    const cartWrapper = document.querySelector(".cart-wrapper");
-    cartWrapper.addEventListener("click", () => {
-      cartWrapper.classList.toggle("open");
-    });
-
-
-    // Quantity Selector
-    const minusBtn = document.querySelector(".minus");
-    const plusBtn = document.querySelector(".plus");
-    const qtyInput = document.getElementById("qtyInput");
-
-    plusBtn.addEventListener("click", () => {
-      qtyInput.value = parseInt(qtyInput.value) + 1;
-    });
-
-    minusBtn.addEventListener("click", () => {
-      const current = parseInt(qtyInput.value);
-      if (current > 0) {
-        qtyInput.value = current - 1;
-      }
-    });
-
-    // Swiper JS for product images
-    const thumbSwiperPage = new Swiper(".thumbSwiperPage", {
-      spaceBetween: 10,
-      slidesPerView: 4,
-      freeMode: true,
-      watchSlidesProgress: true,
-    });
-
-    const mainSwiperPage = new Swiper(".mainSwiperPage", {
-      spaceBetween: 10,
-      thumbs: {
-        swiper: thumbSwiperPage,
-      },
-    });
-
-    //  Lightbox Swipers 
-    const thumbSwiperLightbox = new Swiper(".thumbSwiperLightbox", {
-      spaceBetween: 15,
-      slidesPerView: 4,
-      freeMode: true,
-      watchSlidesProgress: true,
-    });
-
-    const mainSwiperLightbox = new Swiper(".mainSwiperLightbox", {
-      spaceBetween: 10,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      thumbs: {
-        swiper: thumbSwiperLightbox,
-      },
-    });
-
-    // Open Lightbox 
-    const overlay = document.querySelector(".lightbox-overlay");
-    const closeBtn = document.querySelector(".close-btn");
-    const pageThumbs = document.querySelectorAll(".main-gallery .swiper-slide img");
-
-    pageThumbs.forEach((thumb, index) => {
-      thumb.addEventListener("click", () => {
-        overlay.style.display = "flex";
-        mainSwiperLightbox.slideTo(index, 0);
-      });
-    });
-
-    // Close Lightbox 
-    closeBtn.addEventListener("click", () => overlay.style.display = "none");
-    overlay.addEventListener("click", e => {
-      if (e.target === overlay) overlay.style.display = "none";
-    });
-
-
-  </script>
 </body>
+<footer>
+  
+<script src="/schoenen/script.js"></script>
+</footer>
 
 </html>
