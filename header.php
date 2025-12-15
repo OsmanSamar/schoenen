@@ -32,15 +32,62 @@
           <div class="d-flex align-items-center flex-row gap-5 me-2">
             <div class="cart-wrapper">
               <img src="images/icon-cart.svg" class="cart-icon" />
-
+              <!-- To Cart -->
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Cart</a></li>
+                <li class="dropdown-item"><strong class=" ">Cart</strong></li>
                 <li>
-                  <hr class="dropdown-divider" />
+                  <hr class="dropdown-divider">
                 </li>
-                <li>
-                  <a class="dropdown-item" href="#">Your cart is empty.</a>
-                </li>
+
+                <?php if (empty($_SESSION['cart'])): ?>
+                  <li><span class="dropdown-item text-center align-items-center justify-content-center mt-5">Your cart is
+                      empty.</span></li>
+                <?php else: ?>
+                
+
+
+                  <?php
+                  $total = 0;
+                  foreach ($_SESSION['cart'] as $id => $item):
+                    $subtotal = $item['price'] * $item['quantity'];
+                    $total += $subtotal;
+                    ?>
+                    <li class="dropdown-item cart-item d-flex align-items-center justify-content-between">
+                      <!-- Product info -->
+                      <div class="d-flex align-items-center gap-3">
+                        <img src="<?= $item['image']; ?>" class="cart-thumb">
+                         <!-- <img src="<?= htmlspecialchars($item['image']); ?>" class="cart-thumb"> -->
+                        <div class="cart-details">
+                          <div class="cart-name"><?= $item['name']; ?></div>
+                          <div class="cart-price">
+                            $<?= $item['price']; ?> × <?= $item['quantity']; ?>
+                            <strong>$<?= $subtotal; ?>.00</strong>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Delete button -->
+                      <form method="post" action="remove-from-cart.php" class="mt-3">
+                        <input type="hidden" name="product_id" value="<?= $id; ?>">
+                        <button type="submit" class="cart-delete">
+                          <img src="images/icon-delete.svg" alt="Delete">
+                        </button>
+                      </form>
+
+                    </li>
+                  <?php endforeach; ?>
+                  <!-- <li>
+                    <hr class="dropdown-divider">
+                  </li> -->
+                  <li class="dropdown-item mt-4">
+                    <!-- <strong>Total: $<?= $total; ?></strong> -->
+                    <button type="submit" class="add-to-cart-btn w-100">
+                      <span class="d-flex align-items-center justify-content-center text-center">
+                       Checkout 
+                       <!-- $<?= $total; ?> -->
+                      </span>
+                    </button>
+                  </li>
+                <?php endif; ?>
               </ul>
             </div>
 

@@ -240,3 +240,35 @@ p {
        display: none;
     }
 }
+
+
+/* Carts details */
+
+.cart-thumb {
+  width: 50px;
+  border-radius: 6px;
+}
+
+.cart-details {
+  font-size: 15px;
+  color: hsl(219, 9%, 45%);
+  font-weight: 500;
+}
+
+.cart-name {
+  white-space: nowrap;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px; */
+}
+
+.cart-price strong {
+  color: hsl(220, 13%, 13%);
+  margin-left: 5px;
+}
+
+.cart-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+}

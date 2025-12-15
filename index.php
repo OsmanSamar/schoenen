@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +28,7 @@
 
   <title>Frontend Mentor | E-commerce product page</title>
 
- 
+
 </head>
 
 <body>
@@ -39,6 +43,14 @@
 
 
   <script>
+
+    // To open dropmenu
+    const cartWrapper = document.querySelector(".cart-wrapper");
+    cartWrapper.addEventListener("click", () => {
+      cartWrapper.classList.toggle("open");
+    });
+
+    // Quantity Selector
     const minusBtn = document.querySelector(".minus");
     const plusBtn = document.querySelector(".plus");
     const qtyInput = document.getElementById("qtyInput");
@@ -54,7 +66,6 @@
       }
     });
 
-    
     // Swiper JS for product images
     const thumbSwiperPage = new Swiper(".thumbSwiperPage", {
       spaceBetween: 10,
