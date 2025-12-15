@@ -1,5 +1,15 @@
 <?php
+
+
 session_start();
+
+$cartCount = 0;
+
+if (!empty($_SESSION['cart'])) {
+  foreach ($_SESSION['cart'] as $item) {
+    $cartCount += $item['quantity'];
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,11 +54,36 @@ session_start();
 
   <script>
 
+
+    // To open menu on mobile
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggler = document.querySelector(".navbar-toggler");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const closeBtn = mobileMenu.querySelector(".close-btn");
+
+      toggler.addEventListener("click", () => {
+        mobileMenu.classList.add("open");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+      });
+
+      // Optional: close when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!mobileMenu.contains(e.target) && !toggler.contains(e.target)) {
+          mobileMenu.classList.remove("open");
+        }
+      });
+    });
+
     // To open dropmenu
     const cartWrapper = document.querySelector(".cart-wrapper");
     cartWrapper.addEventListener("click", () => {
       cartWrapper.classList.toggle("open");
     });
+
 
     // Quantity Selector
     const minusBtn = document.querySelector(".minus");
