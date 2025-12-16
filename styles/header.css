@@ -1,5 +1,4 @@
 .navbar-brand {
-
   padding-top: unset;
   padding-bottom: unset;
   @media (min-width: 992px) {
@@ -44,13 +43,13 @@
 
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-nav .nav-link {
-    padding-right: 1.5rem;
-    padding-left: 0.5rem;
+    padding-right: 1.5rem !important;
+    padding-left: 0.5rem !important;
   }
 
-   .navbar {
-  border-bottom: 1px solid hsl(220, 14%, 75%);
-}
+  .navbar {
+    border-bottom: 1px solid hsl(220, 14%, 75%);
+  }
 }
 
 /* Navmenu hover effect */
@@ -62,6 +61,11 @@
 }
 } */
 
+/* .nav-link {
+  align-items: center;
+  display: flex;
+  padding: 1.5rem 1rem !important;
+} */
 
 .navbar-toggler-icon {
   width: 1em;
@@ -69,10 +73,11 @@
 }
 .navbar-nav .nav-link {
   position: relative;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
+   padding-bottom: 1px;
   color: hsl(219, 9%, 45%) !important;
   transition: color 0.2s ease;
-      /* opacity: 0.5;
+  /* opacity: 0.5;
     font-weight: 600; */
 }
 
@@ -138,9 +143,9 @@
   border-radius: 10px;
   border: unset;
   padding: 1.5rem 0rem;
-   max-width: calc(100vw - 53px);
+  max-width: calc(100vw - 53px);
   @media (min-width: 992px) {
-     top: 190%;
+    top: 190%;
     right: -120px;
   }
 }
@@ -173,7 +178,7 @@
   height: 20px;
   /* object-fit: cover; */
   cursor: pointer;
-   object-fit: contain;
+  object-fit: contain;
   filter: brightness(0);
 }
 
@@ -184,8 +189,8 @@
   object-fit: cover;
   cursor: pointer;
   &:hover {
-   border: 2px solid hsl(26, 100%, 55%);  
-   border-radius: 50%;
+    border: 2px solid hsl(26, 100%, 55%);
+    border-radius: 50%;
   }
 }
 

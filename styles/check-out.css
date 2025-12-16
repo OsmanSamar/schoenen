@@ -56,3 +56,7 @@ hr {
   width: 40px;
   height: auto;
 }
+
+.subtotal{
+  color:red;
+}

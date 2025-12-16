@@ -12,7 +12,9 @@ if (!isset($_POST['quantity'])) {
 $id = $_POST['product_id'];
 $image = $_POST['product_image'] ?? '';
 $name = $_POST['product_name'];
-$price = $_POST['price'];
+// $price = $_POST['price'];
+$price = (float) $_POST['price'];
+$final_price = (float) $_POST['final_price'];
 $quantity = (int) $_POST['quantity'];
 
 if (!isset($_SESSION['cart'])) {
@@ -33,6 +35,7 @@ if (isset($_SESSION['cart'][$id])) {
         'image' => $image,
         'name' => $name,
         'price' => $price,
+        'final_price' => $final_price, 
         'quantity' => $quantity
     ];
 }

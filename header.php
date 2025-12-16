@@ -7,7 +7,7 @@
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php">
           <img src="images/logo.svg" alt="" />
         </a>
 
@@ -72,24 +72,36 @@
                 <?php
                 $total = 0;
                 foreach ($_SESSION['cart'] as $id => $item):
-                  $subtotal = $item['price'] * $item['quantity'];
+
+                  $price = isset($item['discount_price']) && $item['discount_price'] > 0
+                    ? $item['discount_price']
+                    : $item['price'];
+
+                  // $subtotal = $price * $item['quantity'];
+                  // $total += $subtotal;
+                  $price = $item['final_price'];
+                  $subtotal = $price * $item['quantity'];
                   $total += $subtotal;
+                  // print_r($total)
                   ?>
                   <li class="dropdown-item cart-item d-flex align-items-center justify-content-between">
-                    <!-- Product info -->
                     <div class="d-flex align-items-center gap-3">
-                      <img src="<?= $item['image']; ?>" class="cart-thumb">
-                      <!-- <img src="<?= htmlspecialchars($item['image']); ?>" class="cart-thumb"> -->
+                      <img src="<?= htmlspecialchars($item['image']); ?>" class="cart-thumb">
+
                       <div class="cart-details">
-                        <div class="cart-name"><?= $item['name']; ?></div>
+                        <div class="cart-name"><?= htmlspecialchars($item['name']); ?></div>
+                        <!-- <div class="cart-price">
+                          $<?= number_format($price, 2); ?> × <?= $item['quantity']; ?>
+                          <strong>$<?= number_format($subtotal, 2); ?></strong>
+                        </div> -->
                         <div class="cart-price">
-                          $<?= $item['price']; ?> × <?= $item['quantity']; ?>
-                          <strong>$<?= $subtotal; ?>.00</strong>
+                          $<?= number_format($price, 2); ?> × <?= $item['quantity']; ?>
+                          <strong>$<?= number_format($subtotal, 2); ?></strong>
                         </div>
                       </div>
                     </div>
-                    <!-- Delete button -->
-                    <form method="post" action="remove-from-cart.php" class="mt-3">
+
+                    <form method="post" action="remove-from-cart.php">
                       <input type="hidden" name="product_id" value="<?= $id; ?>">
                       <button type="submit" class="cart-delete">
                         <img src="images/icon-delete.svg" alt="Delete">

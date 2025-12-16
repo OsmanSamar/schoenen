@@ -9,7 +9,8 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Kumbh Sans", sans-serif;
-  background-color:hsl(0, 0%, 100%);
+  /* background-color:hsl(0, 0%, 100%); */
+    background-color: hsl(25, 100%, 94%);
 
   :root {
     --primary-orange: hsl(26, 100%, 55%);

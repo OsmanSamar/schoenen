@@ -1,6 +1,41 @@
 <?php
+require_once('./products_data.php');
 // Template Name: Product Page
+$product_id = 1;
+$product = get_product_by_id($product_id);
+$discount_price = get_discount_price($product_id);
 
+if (!$product) {
+  echo "Product not found";
+  exit;
+}
+
+// echo '<pre>';
+// print_r($product);
+// echo '</pre>';
+
+$price = $product['price'];
+$discount = 0;
+$discountPercent = 0;
+
+if (!empty($product['discounts'])) {
+  foreach ($product['discounts'] as $d) {
+    if ($d['is_active']) {
+      $discountPercent = $d['type'] === 'percentage' ? $d['amount'] : 0;
+      $discount = ($discountPercent / 100) * $price;
+      break;
+    }
+  }
+}
+
+$final_price = $price - $discount;
+// echo '<pre>';
+// print_r($final_price);
+// echo '</pre>';
+
+// quantity in cart
+$quantityInCart = $_SESSION['cart'][$product_id]['quantity'] ?? 0;
+$buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
 ?>
 <div class="container product-page">
   <div class="row">
@@ -35,33 +70,33 @@
       </div> -->
 
       <div class="gallery-container">
-  <div class="main-gallery swiper mainSwiperPage">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="images/image-product-1.jpg" /></div>
-      <div class="swiper-slide"><img src="images/image-product-2.jpg" /></div>
-      <div class="swiper-slide"><img src="images/image-product-3.jpg" /></div>
-      <div class="swiper-slide"><img src="images/image-product-4.jpg" /></div>
-    </div>
+        <div class="main-gallery swiper mainSwiperPage">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/image-product-1.jpg" /></div>
+            <div class="swiper-slide"><img src="images/image-product-2.jpg" /></div>
+            <div class="swiper-slide"><img src="images/image-product-3.jpg" /></div>
+            <div class="swiper-slide"><img src="images/image-product-4.jpg" /></div>
+          </div>
 
-    <!-- Navigation (mobile only) -->
-    <div class="swiper-button-prev d-lg-none">
-       <img src="images/icon-previous.svg" />
-    </div>
-    <div class="swiper-button-next d-lg-none">
-       <img src="images/icon-next.svg" />
-    </div>
-  </div>
+          <!-- Navigation (mobile only) -->
+          <div class="swiper-button-prev d-lg-none">
+            <img src="images/icon-previous.svg" />
+          </div>
+          <div class="swiper-button-next d-lg-none">
+            <img src="images/icon-next.svg" />
+          </div>
+        </div>
 
-  <!-- Thumbnails (desktop only) -->
-  <div class="thumb-gallery swiper thumbSwiperPage d-none d-lg-block">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="images/image-product-1-thumbnail.jpg" /></div>
-      <div class="swiper-slide"><img src="images/image-product-2-thumbnail.jpg" /></div>
-      <div class="swiper-slide"><img src="images/image-product-3-thumbnail.jpg" /></div>
-      <div class="swiper-slide"><img src="images/image-product-4-thumbnail.jpg" /></div>
-    </div>
-  </div>
-</div>
+        <!-- Thumbnails (desktop only) -->
+        <div class="thumb-gallery swiper thumbSwiperPage d-none d-lg-block">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/image-product-1-thumbnail.jpg" /></div>
+            <div class="swiper-slide"><img src="images/image-product-2-thumbnail.jpg" /></div>
+            <div class="swiper-slide"><img src="images/image-product-3-thumbnail.jpg" /></div>
+            <div class="swiper-slide"><img src="images/image-product-4-thumbnail.jpg" /></div>
+          </div>
+        </div>
+      </div>
 
       <!-- Lightbox Modal -->
       <div class="lightbox-overlay  ">
@@ -128,32 +163,25 @@
         class="quantity-addcart d-flex flex-column flex-md-row align-items-center gap-3 mt-4 flex-wrap">
 
         <!-- Product info -->
-        <input type="hidden" name="product_id" value="1">
-        <input type="hidden" name="product_image" value="images/image-product-1.jpg">
-        <input type="hidden" name="product_name" value="Fall Limited Edition Sneakers">
-        <input type="hidden" name="price" value="125.00">
+        <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+        <input type="hidden" name="product_image" value="<?= $product['image_path']; ?>">
+        <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']); ?>">
+        <!-- <input type="hidden" name="original_price" value="<?= $price; ?>">
+        <input type="hidden" name="price" value="<?= $final_price; ?>"> -->
+        <input type="hidden" name="final_price" value="<?= $final_price ?>">
+        <input type="hidden" name="price" value="<?= $price ?>">
 
         <!-- Quantity -->
-        <span class="qty-box  d-flex align-items-center justify-content-between">
+        <span class="qty-box d-flex align-items-center justify-content-between">
           <img src="images/icon-minus.svg" class="qty-btn minus" />
 
-          <!-- If in cart -->
-          <?php
-          $quantityInCart = 0;
-          if (isset($_SESSION['cart'][1])) {
-            $quantityInCart = $_SESSION['cart'][1]['quantity'];
-          }
-          ?>
-          <input type="number" id="qtyInput" name="quantity" value="<?= $quantityInCart ?>" min="0" />
+          <input type="number" id="qtyInput" name="quantity" value="<?= $quantityInCart; ?>" min="0" />
 
           <img src="images/icon-plus.svg" class="qty-btn plus" />
         </span>
 
-        <?php
-        $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
-        ?>
-        <!-- Add Button -->
-        <button type="submit" class="add-to-cart-btn ">
+        <!-- Add / Update Button -->
+        <button type="submit" class="add-to-cart-btn">
           <span class="d-flex align-items-center gap-3 justify-content-center">
             <img src="images/icon-cart.svg" alt="Cart Icon" class="cart-icon">
             <?= $buttonText; ?>
