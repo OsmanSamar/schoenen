@@ -12,9 +12,13 @@
   border: none;
   font-weight: 700;
   width: 100%;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
   &:hover {
     background-color: hsla(26, 100%, 66%);
-    cursor: pointer;
+   
+     color: hsl(0, 0%, 0%);
   }
   @media (min-width: 992px) {
    width: auto;

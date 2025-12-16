@@ -1,0 +1,58 @@
+.check-out {
+  background-color: hsl(25, 100%, 94%);
+}
+
+hr {
+  margin: 0px 0px !important ;
+}
+
+.check-wrapper {
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 10px;
+}
+
+.order-wrapper {
+  border: 1px solid hsl(220, 14%, 75%);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.shipping-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  background: hsl(0, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+  font-size: 18px;
+  font-weight: 700;
+  padding: 3px 10px;
+  line-height: 1;
+}
+
+.payment-bg {
+  background-color: hsl(223, 64%, 98%);
+}
+
+.delivery-option {
+  padding: 15px;
+  border: 1px solid hsl(220, 14%, 75%);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.delivery-option:hover {
+  border-color: hsl(26, 100%, 55%);
+}
+
+.delivery-option input[type="radio"] {
+  /* accent-color: hsl(26, 100%, 55%); */
+  accent-color:hsl(0, 0%, 0%);
+  width: 18px;
+  height: 18px;
+}
+
+.delivery-logo {
+  width: 40px;
+  height: auto;
+}

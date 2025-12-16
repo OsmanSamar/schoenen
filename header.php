@@ -11,7 +11,7 @@
           <img src="images/logo.svg" alt="" />
         </a>
 
-      
+
 
         <!-- Custom offcanvas menu -->
         <div class="mobile-menu" id="mobileMenu">
@@ -25,7 +25,7 @@
           </ul>
         </div>
 
-        
+
         <!-- Lg -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -99,12 +99,17 @@
                 <?php endforeach; ?>
                 <li class="dropdown-item mt-4">
                   <!-- <strong>Total: $<?= $total; ?></strong> -->
-                  <button type="submit" class="add-to-cart-btn w-100">
+                  <!-- <button type="submit" class="add-to-cart-btn w-100">
                     <span class="d-flex align-items-center justify-content-center text-center">
                       Checkout
-                      <!-- $<?= $total; ?> -->
+                      $<?= $total; ?>
                     </span>
-                  </button>
+                  </button> -->
+
+
+                  <a href="check-out.php" class="add-to-cart-btn w-100 text-center d-block ">
+                    Checkout
+                  </a>
                 </li>
               <?php endif; ?>
             </ul>
