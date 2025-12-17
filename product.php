@@ -172,10 +172,10 @@ $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
         <input type="hidden" name="price" value="<?= $price ?>">
 
         <!-- Quantity -->
-        <span class="qty-box d-flex align-items-center justify-content-between">
+        <span class="qty-box  ">
           <img src="images/icon-minus.svg" class="qty-btn minus" />
 
-          <input type="number" id="qtyInput" name="quantity" value="<?= $quantityInCart; ?>" min="0" />
+          <input type="number" id="qtyInput" name="quantity" value="<?= $quantityInCart; ?>" min="1" />
 
           <img src="images/icon-plus.svg" class="qty-btn plus" />
         </span>

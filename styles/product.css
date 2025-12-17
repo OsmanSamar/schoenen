@@ -5,6 +5,8 @@
 }
 }
 .add-to-cart-btn {
+  display: inline-block;
+   line-height: 1.5;
   background-color: hsl(26, 100%, 55%);
   color: hsl(0, 0%, 0%);
   border-radius: 10px;
@@ -14,7 +16,12 @@
   width: 100%;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.3s ease;
+   vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+
+  /* transition: all 0.3s ease; */
+   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   &:hover {
     background-color: hsla(26, 100%, 66%);
    
@@ -30,6 +37,7 @@
  .qty-box {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: hsl(223, 64%, 98%);
   padding: 15px 30px;
   border-radius: 10px;
@@ -40,6 +48,19 @@
   }
  
 }
+
+/*Hide default spinner controls Voor Chrome, Safari, Edge (WebKit-gebaseerde browsers) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*Hide default spinner controls Voor Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 
 .qty-btn {
   cursor: pointer;
@@ -64,12 +85,11 @@
 }
 
 .cart-icon {
- 
   object-fit: contain;
   filter: brightness(0);
 }
 
-h1 {
+/* h1 {
   font-size: 30px;
   font-weight: 700;
   color: hsl(220, 13%, 13%);
@@ -91,7 +111,7 @@ p {
   @media (min-width: 768px) {
     font-size: 18px;
   }
-}
+} */
 
 .price-section {
   margin: 25px 0;
