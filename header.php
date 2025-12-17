@@ -61,7 +61,7 @@
             </div>
             <!-- To Cart -->
             <ul class="dropdown-menu">
-              <li class="dropdown-item  py-2"><strong class=" ">Cart</strong></li>
+              <li class="dropdown-item  pb-4"><strong class=" ">Cart</strong></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -86,7 +86,7 @@
                   $total += $subtotal;
                   // print_r($total)
                   ?>
-                  <li class="dropdown-item cart-item d-flex align-items-center justify-content-between gap-3">
+                  <li class="dropdown-item cart-item d-flex align-items-center justify-content-between gap-3 pt-4">
                     <div class="d-flex align-items-center gap-3">
                       <img src="<?= htmlspecialchars($item['image']); ?>" class="cart-thumb">
 

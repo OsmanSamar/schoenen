@@ -113,16 +113,15 @@ $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
               <div class="swiper-slide"><img src="images/image-product-3.jpg" /></div>
               <div class="swiper-slide"><img src="images/image-product-4.jpg" /></div>
             </div>
+          </div>
 
-            <!-- Custom Next/Prev Buttons -->
-            <div class="swiper-button-prev">
-              <img src="images/icon-previous.svg" />
-            </div>
+          <!-- Custom Next/Prev Buttons -->
+          <div class="swiper-button-prev">
+            <img src="images/icon-previous.svg" />
+          </div>
 
-            <div class="swiper-button-next">
-              <img src="images/icon-next.svg" />
-            </div>
-
+          <div class="swiper-button-next">
+            <img src="images/icon-next.svg" />
           </div>
 
           <!-- Thumbnails in Lightbox -->
@@ -143,7 +142,7 @@ $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
 
     <!-- Text col -->
     <div class="col-12  col-md-5 offset-md-1 col-lg-5 my-auto  py-4 px-4 px-lg-0">
-      <span class="sub-title">Sneaker  Company</span>
+      <span class="sub-title">Sneaker Company</span>
       <h1>Fall Limited Edition Sneakers</h1>
       <p>
         These low-profile sneakers are your perfect casual wear companion. Featuring a

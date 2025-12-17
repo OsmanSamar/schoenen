@@ -264,6 +264,12 @@ input[type=number] {
 }
 
 .lightbox-overlay {
+  .swiper-button-next,
+.swiper-button-prev {
+  top: 45%; 
+   transform: translateY(-50%);
+   
+}
   .swiper-button-next {
    right:-2px !important;
 }
