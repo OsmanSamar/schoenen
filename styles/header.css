@@ -6,6 +6,12 @@
   }
 }
 
+.navbar-brand img{
+  height: 24px;
+    width: auto;
+    object-fit: cover;
+}
+
 /* Mobile menu styles */
 
 .mobile-menu {
@@ -73,12 +79,12 @@
 }
 .navbar-nav .nav-link {
   position: relative;
-  /* padding-bottom: 10px; */
    padding-bottom: 1px;
   color: hsl(219, 9%, 45%) !important;
   transition: color 0.2s ease;
+  font-weight: 500;
   /* opacity: 0.5;
-    font-weight: 600; */
+     */
 }
 
 .navbar-nav .nav-link::after {
@@ -132,10 +138,11 @@
   position: absolute;
   /* right: 0;
   top: 120%; */
-  right: -53px;
-  /* right: 0; */
+  /* right: -42px; */
+     left: -50%;
+    transform: translateX(-75%);
   top: 300%;
-  min-width: 10rem;
+  min-width: 21rem;
   min-height: 200px;
   width: fit-content;
   height: fit-content;
@@ -167,6 +174,8 @@
 .dropdown-item {
   padding: 0.25rem 1.5rem;
 }
+
+
 .dropdown-item:focus,
 .dropdown-item:hover {
   /* color: #1e2125; */
@@ -174,24 +183,33 @@
 }
 
 .cart-icon {
-  width: 20px;
-  height: 20px;
-  /* object-fit: cover; */
+  width: 22px;
+  height: 22px;
   cursor: pointer;
   object-fit: contain;
   filter: brightness(0);
+  @media(min-width:768px){
+ filter: unset;
+}
+  
 }
 
 .user-avatar {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
+@media(min-width:768px){
+   width: 50px;
+  height: 50px;
+}
   &:hover {
     border: 2px solid hsl(26, 100%, 55%);
     border-radius: 50%;
   }
+ 
+
 }
 
 .cart-wrapper {

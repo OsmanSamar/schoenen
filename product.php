@@ -143,7 +143,7 @@ $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
 
     <!-- Text col -->
     <div class="col-12  col-md-5 offset-md-1 col-lg-5 my-auto  py-4 px-4 px-lg-0">
-      <span class="sub-title">Sneaker Company</span>
+      <span class="sub-title">Sneaker  Company</span>
       <h1>Fall Limited Edition Sneakers</h1>
       <p>
         These low-profile sneakers are your perfect casual wear companion. Featuring a
@@ -152,10 +152,10 @@ $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
       <div
         class="price-section d-flex flex-row flex-md-column align-items-center justify-content-between align-items-md-start justify-content-md-start ">
         <span class="d-flex align-items-center gap-3 mb-1">
-          <span class="current-price">$125.00</span>
+          <span class="current-price">€&nbsp;125.00</span>
           <span class="discount">50%</span>
         </span>
-        <span class="original-price">$250.00</span>
+        <span class="original-price">€&nbsp;250.00</span>
       </div>
 
 
@@ -183,7 +183,7 @@ $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
         <!-- Add / Update Button -->
         <button type="submit" class="add-to-cart-btn">
           <span class="d-flex align-items-center gap-3 justify-content-center">
-            <img src="images/icon-cart.svg" alt="Cart Icon" class="cart-icon">
+            <img src="images/icon-cart.svg" alt="Cart Icon" class="cart_icon">
             <?= $buttonText; ?>
           </span>
         </button>

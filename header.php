@@ -3,13 +3,15 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light  py-4">
       <div class="container-fluid px-0 flex-nowrap">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+       <div class="d-flex align-items-center flex-row gap-lg-0 gap-3 ">
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand mb-1" href="index.php">
           <img src="images/logo.svg" alt="" />
         </a>
+       </div>
 
 
 
@@ -59,7 +61,7 @@
             </div>
             <!-- To Cart -->
             <ul class="dropdown-menu">
-              <li class="dropdown-item"><strong class=" ">Cart</strong></li>
+              <li class="dropdown-item  py-2"><strong class=" ">Cart</strong></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -84,7 +86,7 @@
                   $total += $subtotal;
                   // print_r($total)
                   ?>
-                  <li class="dropdown-item cart-item d-flex align-items-center justify-content-between">
+                  <li class="dropdown-item cart-item d-flex align-items-center justify-content-between gap-3">
                     <div class="d-flex align-items-center gap-3">
                       <img src="<?= htmlspecialchars($item['image']); ?>" class="cart-thumb">
 
@@ -95,8 +97,8 @@
                           <strong>$<?= number_format($subtotal, 2); ?></strong>
                         </div> -->
                         <div class="cart-price">
-                          $<?= number_format($price, 2); ?> × <?= $item['quantity']; ?>
-                          <strong>$<?= number_format($subtotal, 2); ?></strong>
+                         €&nbsp;<?= number_format($price, 2); ?> × <?= $item['quantity']; ?>
+                          <strong>€&nbsp;<?= number_format($subtotal, 2); ?></strong>
                         </div>
                       </div>
                     </div>

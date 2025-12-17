@@ -33,7 +33,8 @@ if (!empty($_SESSION['cart'])) {
                     }
                     ?>
                     <h2>Shopping Cart (<?= $itemCount; ?> item<?= $itemCount > 1 ? 's' : ''; ?>)</h2>
-                    <p>Package will be delivered by Sneakers
+                    <p>Package will be delivered by Sneakers.
+                        <br/>
                         Tomorrow,
                         <?php echo date('M d', strtotime("+1 days")); ?>
                         -
@@ -156,7 +157,7 @@ if (!empty($_SESSION['cart'])) {
 
                     <hr>
 
-                    <div class="d-flex justify-content-between fs-5">
+                    <div class="d-flex justify-content-between fs-5 mt-3">
                         <strong>Total</strong>
                         <strong>€&nbsp;<?= number_format($subtotal, 2); ?></strong>
                     </div>
@@ -164,9 +165,9 @@ if (!empty($_SESSION['cart'])) {
                 </div>
                 <div class=" p-5">
                     <h4 class="mt-5 mb-3 ">Payment Method</h4>
-                    <span>We accept</span>
+                    <span >We accept</span>
 
-                    <label class="payment-option d-flex align-items-center justify-content-between mb-3">
+                    <label class="payment-option d-flex align-items-center justify-content-between my-3">
                         <div class="d-flex align-items-center gap-3">
                             <img src="images/mastercard.svg" width="40">
                             <span>Credit / Debit Card</span>
