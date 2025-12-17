@@ -36,7 +36,7 @@ if (!empty($_SESSION['cart'])) {
                     <p>Package will be delivered by Sneakers
                         Tomorrow,
                         <?php echo date('M d', strtotime("+1 days")); ?>
-                        - 
+                        -
                         <?php echo date('D, M d', strtotime("+3 days")); ?>
                     </p>
                     <div class="order-wrapper">
@@ -139,13 +139,13 @@ if (!empty($_SESSION['cart'])) {
                 <div class="p-5">
                     <h3>Order Summary</h3>
                     <div class="d-flex justify-content-between mt-4 mb-2">
-                        <span >Subtotal</span>
-                        <span >€&nbsp;<?= number_format($total, 2); ?></span>
+                        <span>Subtotal</span>
+                        <span>€&nbsp;<?= number_format($total, 2); ?></span>
 
                     </div>
 
                     <div class="d-flex justify-content-between mb-2">
-                        <span  class="mb-2">Verzending (Shipping)</span>
+                        <span class="mb-2">Verzending (Shipping)</span>
                         <span class="text-success">Free</span>
                     </div>
 
@@ -182,9 +182,13 @@ if (!empty($_SESSION['cart'])) {
                         <input type="radio" name="payment">
                     </label>
 
-                    <button class="add-to-cart-btn w-100 mt-4">
+                    <!-- <button class="add-to-cart-btn w-100 mt-4">
                         Pay €&nbsp;<?= number_format($subtotal, 2); ?>
-                    </button>
+                    </button> -->
+
+                    <a href="login.php" class="add-to-cart-btn w-100 mt-4 text-center d-block">
+                        Pay € <?= number_format($subtotal, 2); ?>
+                    </a>
                 </div>
             </div>
 
