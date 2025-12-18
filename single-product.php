@@ -1,7 +1,23 @@
 <?php
+
+session_start();
+
+$cartCount = 0;
+
+if (!empty($_SESSION['cart'])) {
+  foreach ($_SESSION['cart'] as $item) {
+    $cartCount += $item['quantity'];
+  }
+}
+
+
+
 require_once('./products_data.php');
-// Template Name: Product Page
-$product_id = 1;
+
+// Template Name: Single-product Page
+// $product_id = 1;
+
+$product_id = $_GET['id']??1;
 $product = get_product_by_id($product_id);
 $discount_price = get_discount_price($product_id);
 
@@ -37,7 +53,21 @@ $final_price = $price - $discount;
 $quantityInCart = $_SESSION['cart'][$product_id]['quantity'] ?? 0;
 $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
 ?>
-<div class="container product-page">
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Single-Product</title>
+</head>
+
+<body class="">
+    <?php include 'header.php'; 
+    include 'imports.php';
+    ?>
+
+   <div class="container product-page">
   <div class="row">
     <div class="col-12 col-md-5 col-lg-4 offset-lg-1 ">
       <!-- Main Gallery (on page) -->
@@ -142,19 +172,27 @@ $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
 
     <!-- Text col -->
     <div class="col-12  col-md-5 offset-md-1 col-lg-5 my-auto  py-4 px-4 px-lg-0">
-      <span class="sub-title">Sneaker Company</span>
-      <h1>Fall Limited Edition Sneakers</h1>
+      <span class="sub-title">
+         <?= htmlspecialchars($product['merk']); ?>
+      </span>
+      <h1>
+        
+         <?= htmlspecialchars($product['name']); ?>
+      </h1>
       <p>
-        These low-profile sneakers are your perfect casual wear companion. Featuring a
-        durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+        <?= htmlspecialchars($product['details']); ?>
+      </p>
 
       <div
         class="price-section d-flex flex-row flex-md-column align-items-center justify-content-between align-items-md-start justify-content-md-start ">
         <span class="d-flex align-items-center gap-3 mb-1">
-          <span class="current-price">€&nbsp;125.00</span>
-          <span class="discount">50%</span>
+          <span class="current-price">€&nbsp;<?= $final_price ?>.00</span>
+          <span class="discount">
+             <?=  $discountPercent ?>%
+          </span>
         </span>
-        <span class="original-price">€&nbsp;250.00</span>
+        <span class="original-price">€&nbsp;<?= $price ?>
+        </span>
       </div>
 
 
@@ -163,12 +201,14 @@ $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
 
         <!-- Product info -->
         <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+        <input type="hidden" name="product_merk" value="<?= htmlspecialchars($product['merk']); ?>">
         <input type="hidden" name="product_image" value="<?= $product['image_path']; ?>">
         <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']); ?>">
-        <!-- <input type="hidden" name="original_price" value="<?= $price; ?>">
-        <input type="hidden" name="price" value="<?= $final_price; ?>"> -->
+        <input type="hidden" name="product_details" value="<?= htmlspecialchars($product['details']); ?>">
         <input type="hidden" name="final_price" value="<?= $final_price ?>">
         <input type="hidden" name="price" value="<?= $price ?>">
+         <input type="hidden" name="discounts" value="<?= $discount ?>">
+        
 
         <!-- Quantity -->
         <span class="qty-box  ">
@@ -193,3 +233,10 @@ $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
     </div>
   </div>
 </div>
+
+</body>
+<footer>
+    <script src="/schoenen/script.js"></script>
+</footer>
+
+</html>

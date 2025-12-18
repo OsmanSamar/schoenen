@@ -7,8 +7,6 @@ $cartCount = 0;
 $subtotalBeforeDiscount = 0;
 $total = 0;
 
-
-
 if (!empty($_SESSION['cart'])) {
     foreach ($_SESSION['cart'] as $item) {
 
@@ -27,7 +25,6 @@ if (!empty($_SESSION['cart'])) {
 <html lang="en">
 
 <head>
-
     <?php include 'imports.php'; ?>
     <title>Order Summary</title>
 </head>
@@ -93,18 +90,13 @@ if (!empty($_SESSION['cart'])) {
                                     </strong>
                                     <!-- delete -->
                                     <form method="post" action="update-cart.php">
-                                    <input type="hidden" name="product_id" value="<?= $id; ?>">
-                                    <input type="hidden" name="action" value="remove">
-                                    <button type="submit" class="cart-delete">
-                                        <img src="images/icon-delete.svg" alt="Delete">
-                                    </button>
-                                </form>
-                                    <!-- <form method="post" action="remove-from-cart.php">
                                         <input type="hidden" name="product_id" value="<?= $id; ?>">
+                                        <input type="hidden" name="action" value="remove">
                                         <button type="submit" class="cart-delete">
                                             <img src="images/icon-delete.svg" alt="Delete">
                                         </button>
-                                    </form> -->
+                                    </form>
+
                                 </div>
                             <?php endforeach; ?>
                             <hr>
@@ -220,11 +212,11 @@ if (!empty($_SESSION['cart'])) {
 
 
         <?php else: ?>
-           <div class="d-flex align-items-center justify-content-between flex-column">
-            
-             <img src="images/empty-cart.webp" alt="Empty-cart">
-            <h1 class="text-center mt-5">Your cart is empty</h1>
-           </div>
+            <div class="d-flex align-items-center justify-content-between flex-column">
+
+                <img src="images/empty-cart.webp" alt="Empty-cart">
+                <h1 class="text-center mt-5">Your cart is empty</h1>
+            </div>
         <?php endif; ?>
 
 

@@ -28,7 +28,9 @@ if (!empty($_SESSION['cart'])) {
 
 <body>
   <?php include 'header.php'; ?>
-  <?php include 'product.php'; ?>
+    <?php include 'products.php'; ?>
+
+
 
 
   <!-- Option 2: Separate Popper and Bootstrap JS -->

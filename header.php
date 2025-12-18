@@ -3,15 +3,16 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light  py-4">
       <div class="container-fluid px-0 flex-nowrap">
-       <div class="d-flex align-items-center flex-row gap-lg-0 gap-3 ">
-         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand mb-1" href="index.php">
-          <img src="images/logo.svg" alt="" />
-        </a>
-       </div>
+        <div class="d-flex align-items-center flex-row gap-lg-0 gap-3 ">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand mb-1" href="index.php">
+            <img src="images/logo.svg" alt="" />
+          </a>
+        </div>
 
 
 
@@ -97,14 +98,22 @@
                           <strong>$<?= number_format($subtotal, 2); ?></strong>
                         </div> -->
                         <div class="cart-price">
-                         €&nbsp;<?= number_format($price, 2); ?> × <?= $item['quantity']; ?>
+                          €&nbsp;<?= number_format($price, 2); ?> × <?= $item['quantity']; ?>
                           <strong>€&nbsp;<?= number_format($subtotal, 2); ?></strong>
                         </div>
                       </div>
                     </div>
 
-                    <form method="post" action="remove-from-cart.php">
+                    <!-- <form method="post" action="remove-from-cart.php">
                       <input type="hidden" name="product_id" value="<?= $id; ?>">
+                      <button type="submit" class="cart-delete">
+                        <img src="images/icon-delete.svg" alt="Delete">
+                      </button>
+                    </form> -->
+                    <!-- delete -->
+                    <form method="post" action="update-cart.php">
+                      <input type="hidden" name="product_id" value="<?= $id; ?>">
+                      <input type="hidden" name="action" value="remove">
                       <button type="submit" class="cart-delete">
                         <img src="images/icon-delete.svg" alt="Delete">
                       </button>

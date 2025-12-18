@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,12 +14,12 @@
             <div class="card p-4" >
     
     <!-- Logo -->
-    <div class="text-center mb-3">
-        <img src="images/logo.svg" width="120">
+    <div class="text-left mb-3">
+        <img src="images/logo.svg" width="170">
     </div>
 
     <!-- Title -->
-    <h5 class="text-center mb-4">Inloggen of registreren</h5>
+    <h5 class="text-left mb-4">Inloggen of registreren</h5>
 
     <!-- Email -->
     <div class="mb-4">
