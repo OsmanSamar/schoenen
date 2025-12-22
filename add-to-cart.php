@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (!isset($_POST['quantity'])) {
     // header("Location: index.php");
     
@@ -26,7 +25,6 @@ if (!isset($_SESSION['cart'])) {
 if ($quantity == 0) {
     unset($_SESSION['cart'][$id]);
     // header("Location: index.php");
-
     echo json_encode(['status' => 200, 'message' => 'product toegevoegd']);
     exit;
 }
@@ -48,13 +46,18 @@ if (isset($_SESSION['cart'][$id])) {
     ];
 }
 echo json_encode([
-    'status' => 200, 
-    'message' => 'product toegevoegd',
-    'cart-count'=> 5,
-    'cart-html'=>'<div>test</div>'
+     'status' => 200, 
+    // 'message' => 'product toegevoegd',
+    // 'cart-count'=> 5,
+    // 'cart-html'=>'<div>test</div>'
+  
 ]);
-// // header("Location: single-product.php");
+// rehresh;
+//  header("Location: single-product.php");
 exit;
-// refresh
+// refresh;
 // header("Location: " . $_SERVER['HTTP_REFERER']);
 // exit;
+
+
+

@@ -93,13 +93,9 @@
 
                       <div class="cart-details">
                         <div class="cart-name"><?= htmlspecialchars($item['name']); ?></div>
-                        <!-- <div class="cart-price">
-                          $<?= number_format($price, 2); ?> × <?= $item['quantity']; ?>
-                          <strong>$<?= number_format($subtotal, 2); ?></strong>
-                        </div> -->
                         <div class="cart-price">
-                          €&nbsp;<?= number_format($price, 2); ?> × <?= $item['quantity']; ?>
-                          <strong>€&nbsp;<?= number_format($subtotal, 2); ?></strong>
+                          €&nbsp;<?= number_format($price, 2, ',', '.'); ?> × <?= $item['quantity']; ?>
+                          <strong>€&nbsp;<?= number_format($subtotal, 2, ',', '.'); ?></strong>
                         </div>
                       </div>
                     </div>

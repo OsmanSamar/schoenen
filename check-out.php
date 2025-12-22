@@ -1,4 +1,6 @@
 <?php
+require_once('./products_data.php');
+
 session_start();
 
 $cartCount = 0;
@@ -63,7 +65,10 @@ if (!empty($_SESSION['cart'])) {
                             $totalDiscount = 0;
                             foreach ($_SESSION['cart'] as $id => $item): ?>
                                 <div class="d-flex align-items-center mb-3 gap-3">
-                                    <img src="<?= $item['image']; ?>" width="60" class="rounded">
+                                   
+                                    <a href="single-product.php?id=<?= $id; ?>">
+                                        <img src="<?= $item['image']; ?>" width="60" class="rounded">
+                                    </a>
                                     <div class="flex-grow-1">
                                         <div><?= $item['name']; ?></div>
                                         <!-- Quantity controls -->
@@ -86,7 +91,7 @@ if (!empty($_SESSION['cart'])) {
                                     <!-- subtotal -->
                                     <!-- 1 -->
                                     <strong>
-                                        € <?= number_format($item['final_price'] * $item['quantity'], 2); ?>
+                                        € <?= format_price($item['final_price'] * $item['quantity']); ?>
                                     </strong>
                                     <!-- delete -->
                                     <form method="post" action="update-cart.php">
@@ -103,23 +108,23 @@ if (!empty($_SESSION['cart'])) {
                             <div class="d-flex justify-content-between mt-2 ">
                                 <span>Subtotal</span>
                                 <!-- 2 and 3 -->
-                                <!-- <strong>$<?= number_format($total, 2); ?></strong> -->
+                                <!-- <strong>$<?= format_price($total); ?></strong> -->
                                 <strong>
-                                    €&nbsp;<?= number_format($item['price'], 2); ?>
+                                    €&nbsp;<?= format_price($item['price']); ?>
                                 </strong>
                             </div>
                             <div class="d-flex justify-content-between text-success mb-2">
                                 <span>Discount (50%)</span>
-                                <!-- <strong>- $<?= number_format($discount, 2); ?></strong> -->
-                                <strong class="original-price">- €&nbsp;<?= number_format($subtotal, 2); ?></strong>
+                                <!-- <strong>- $<?= format_price($discount); ?></strong> -->
+                                <strong class="original-price">- €&nbsp;<?= format_price($subtotal); ?></strong>
                             </div>
                             <hr>
                             <div class="d-flex justify-content-between fs-5 mt-2">
                                 <strong>Total </strong>
-                                <strong>€&nbsp;<?= number_format($subtotal, 2); ?></strong>
+                                <strong>€&nbsp;<?= format_price($subtotal); ?></strong>
 
                                 <!-- Remove the undeline
-                            <strong class="original-price">$<?= number_format($subtotal, 2); ?></strong> -->
+                            <strong class="original-price">$<?= format_price($subtotal); ?></strong> -->
                             </div>
 
 
@@ -159,9 +164,9 @@ if (!empty($_SESSION['cart'])) {
                         <h3>Order Summary</h3>
                         <div class="d-flex justify-content-between mt-4 mb-2">
                             <span>Subtotal</span>
-                            <!-- <span>€&nbsp;<?= number_format($total, 2); ?></span> -->
+                            <!-- <span>€&nbsp;<?= format_price($total); ?></span> -->
                             <strong>
-                                €&nbsp;<?= number_format($item['final_price'], 2); ?> × <?= $item['quantity']; ?>
+                                €&nbsp;<?= format_price($item['final_price']); ?> × <?= $item['quantity']; ?>
                             </strong>
                         </div>
 
@@ -174,7 +179,7 @@ if (!empty($_SESSION['cart'])) {
 
                         <div class="d-flex justify-content-between fs-5 mt-3">
                             <strong>Total</strong>
-                            <strong>€&nbsp;<?= number_format($subtotal, 2); ?></strong>
+                            <strong>€&nbsp;<?= format_price($subtotal); ?></strong>
                         </div>
 
                     </div>
@@ -198,12 +203,10 @@ if (!empty($_SESSION['cart'])) {
                             <input type="radio" name="payment">
                         </label>
 
-                        <!-- <button class="add-to-cart-btn w-100 mt-4">
-                        Pay €&nbsp;<?= number_format($subtotal, 2); ?>
-                    </button> -->
+                  
 
                         <a href="login.php" class="add-to-cart-btn w-100 mt-4 text-center d-block">
-                            Pay € <?= number_format($subtotal, 2); ?>
+                            Pay € <?= format_price($subtotal); ?>
                         </a>
                     </div>
                 </div>

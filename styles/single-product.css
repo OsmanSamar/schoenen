@@ -302,6 +302,7 @@ input[type=number] {
     width: 21px;
     height: 13px;
     object-fit: contain;
+      filter: brightness(0) invert(1);
     &:hover, &:focus {
       /* filter: brightness(0) saturate(100%) invert(39%) sepia(83%) saturate(7493%) hue-rotate(356deg) brightness(103%) contrast(101%); */
       filter: brightness(0) saturate(141%) invert(75%) sepia(101%) saturate(7510%) hue-rotate(356deg) brightness(130%) contrast(143%);
@@ -311,7 +312,8 @@ input[type=number] {
 .swiper-button-next, 
 .swiper-button-prev  {
   border-radius: 50%;
-  background-color: hsl(0, 0%, 100%);
+  /* background-color: hsl(0, 0%, 100%); */
+    background-color: black;
   cursor: pointer;
 }
 
@@ -321,8 +323,7 @@ input[type=number] {
 
 .swiper-button-next,
 .swiper-button-prev {
-  /* top: 50%; */
-  /* transform: translateY(-50%); */
+
    height: 40px !important;
     width: 40px !important;
 }
@@ -349,9 +350,7 @@ input[type=number] {
 
 .cart-name {
   white-space: wrap;
-  /* overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 160px; */
+ 
   @media(min-width:992px){
    white-space: nowrap;
   }

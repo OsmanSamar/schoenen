@@ -13,230 +13,217 @@ if (!empty($_SESSION['cart'])) {
 
 
 require_once('./products_data.php');
-
 // Template Name: Single-product Page
 // $product_id = 1;
 
-$product_id = $_GET['id']??1;
+$product_id = $_GET['id'] ?? 1;
 $product = get_product_by_id($product_id);
-$discount_price = get_discount_price($product_id);
 
 if (!$product) {
   echo "Product not found";
   exit;
 }
 
-// echo '<pre>';
-// print_r($product);
-// echo '</pre>';
+$discounts = get_discounts($product_id, true);
+$final_price = $discounts['final_price'];
+$discountPercent = $discounts['discount_percentage'];
 
-$price = $product['price'];
-$discount = 0;
-$discountPercent = 0;
+$original_prices = get_original_price($product_id);
+$original_price_formatted = $original_prices['original_price_formatted'];
+$original_price = $original_prices['original_price'];
 
-if (!empty($product['discounts'])) {
-  foreach ($product['discounts'] as $d) {
-    if ($d['is_active']) {
-      $discountPercent = $d['type'] === 'percentage' ? $d['amount'] : 0;
-      $discount = ($discountPercent / 100) * $price;
-      break;
-    }
-  }
-}
-
-$final_price = $price - $discount;
-// echo '<pre>';
-// print_r($final_price);
-// echo '</pre>';
+$images = $product['images'];
+$thumbnails = $product['thumbnails'];
 
 // quantity in cart
 $quantityInCart = $_SESSION['cart'][$product_id]['quantity'] ?? 0;
 $buttonText = $quantityInCart > 0 ? "Update Cart" : "Add to Cart";
+// echo '<pre>';
+// print_r($buttonText);
+// echo '</pre>';
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Single-Product</title>
+  <meta charset="UTF-8">
+  <title>Single-Product</title>
 </head>
 
 <body class="">
-    <?php include 'header.php'; 
-    include 'imports.php';
-    ?>
+  <?php include 'header.php';
+  include 'imports.php';
+  ?>
 
-   <div class="container product-page">
-  <div class="row">
-    <div class="col-12 col-md-5 col-lg-4 offset-lg-1 ">
-      <!-- Main Gallery (on page) -->
-      <!-- <div class="gallery-container">
-        <div class="main-gallery swiper mainSwiperPage">
-          <div class="swiper-wrapper">
+  <div class="container product-page">
+    <div class="row">
+      <div class="col-12 col-md-5 col-lg-4 offset-lg-1 ">
+        <!-- Main Gallery (on page) -->
+        <div class="gallery-container">
+          <div class="main-gallery swiper mainSwiperPage">
+            <!-- <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="images/image-product-1.jpg" /></div>
             <div class="swiper-slide"><img src="images/image-product-2.jpg" /></div>
             <div class="swiper-slide"><img src="images/image-product-3.jpg" /></div>
             <div class="swiper-slide"><img src="images/image-product-4.jpg" /></div>
-               Custom Next/Prev Buttons
-            <div class="swiper-button-prev d-lg-none d-flex">
-              <img src="images/icon-previous.svg" />
+            </div> -->
+
+            <div class="swiper-wrapper">
+              <?php foreach ($thumbnails as $thumb): ?>
+                <div class="swiper-slide">
+                  <img src="<?= $thumb ?>" />
+                </div>
+              <?php endforeach; ?>
             </div>
 
-            <div class="swiper-button-next d-lg-none d-flex">
+            <!-- Navigation (mobile only) -->
+            <div class="swiper-button-prev d-lg-none">
+              <img src="images/icon-previous.svg" />
+            </div>
+            <div class="swiper-button-next d-lg-none">
               <img src="images/icon-next.svg" />
             </div>
           </div>
-        </div>
-
-        <div class="thumb-gallery swiper thumbSwiperPage d-none d-lg-block">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="images/image-product-1-thumbnail.jpg" /></div>
-            <div class="swiper-slide"><img src="images/image-product-2-thumbnail.jpg" /></div>
-            <div class="swiper-slide"><img src="images/image-product-3-thumbnail.jpg" /></div>
-            <div class="swiper-slide"><img src="images/image-product-4-thumbnail.jpg" /></div>
-          </div>
-        </div>
-      </div> -->
-
-      <div class="gallery-container">
-        <div class="main-gallery swiper mainSwiperPage">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="images/image-product-1.jpg" /></div>
-            <div class="swiper-slide"><img src="images/image-product-2.jpg" /></div>
-            <div class="swiper-slide"><img src="images/image-product-3.jpg" /></div>
-            <div class="swiper-slide"><img src="images/image-product-4.jpg" /></div>
-          </div>
-
-          <!-- Navigation (mobile only) -->
-          <div class="swiper-button-prev d-lg-none">
-            <img src="images/icon-previous.svg" />
-          </div>
-          <div class="swiper-button-next d-lg-none">
-            <img src="images/icon-next.svg" />
-          </div>
-        </div>
-
-        <!-- Thumbnails (desktop only) -->
-        <div class="thumb-gallery swiper thumbSwiperPage d-none d-lg-block">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="images/image-product-1-thumbnail.jpg" /></div>
-            <div class="swiper-slide"><img src="images/image-product-2-thumbnail.jpg" /></div>
-            <div class="swiper-slide"><img src="images/image-product-3-thumbnail.jpg" /></div>
-            <div class="swiper-slide"><img src="images/image-product-4-thumbnail.jpg" /></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Lightbox Modal -->
-      <div class="lightbox-overlay  ">
-        <div class="lightbox">
-          <button class="close-btn">
-            ×
-          </button>
-
-          <!-- Main Image Swiper in Lightbox -->
-          <div class="swiper mainSwiperLightbox">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="images/image-product-1.jpg" /></div>
-              <div class="swiper-slide"><img src="images/image-product-2.jpg" /></div>
-              <div class="swiper-slide"><img src="images/image-product-3.jpg" /></div>
-              <div class="swiper-slide"><img src="images/image-product-4.jpg" /></div>
-            </div>
-          </div>
-
-          <!-- Custom Next/Prev Buttons -->
-          <div class="swiper-button-prev">
-            <img src="images/icon-previous.svg" />
-          </div>
-
-          <div class="swiper-button-next">
-            <img src="images/icon-next.svg" />
-          </div>
-
-          <!-- Thumbnails in Lightbox -->
-          <div class="swiper thumbSwiperLightbox">
-            <div class="swiper-wrapper">
+          <!-- Thumbnails (desktop only) -->
+          <div class="thumb-gallery swiper thumbSwiperPage d-none d-lg-block">
+            <!-- <div class="swiper-wrapper">
               <div class="swiper-slide"><img src="images/image-product-1-thumbnail.jpg" /></div>
               <div class="swiper-slide"><img src="images/image-product-2-thumbnail.jpg" /></div>
               <div class="swiper-slide"><img src="images/image-product-3-thumbnail.jpg" /></div>
               <div class="swiper-slide"><img src="images/image-product-4-thumbnail.jpg" /></div>
+            </div> -->
+            <div class="swiper-wrapper">
+              <?php foreach ($images as $img): ?>
+                <div class="swiper-slide">
+                  <img src="<?= $img ?>" />
+                </div>
+              <?php endforeach; ?>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Lightbox Modal -->
+        <div class="lightbox-overlay  ">
+          <div class="lightbox">
+            <button class="close-btn">
+              ×
+            </button>
+            <!-- Main Image Swiper in Lightbox -->
+            <div class="swiper mainSwiperLightbox">
+              <!-- <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="images/image-product-1.jpg" /></div>
+                <div class="swiper-slide"><img src="images/image-product-2.jpg" /></div>
+                <div class="swiper-slide"><img src="images/image-product-3.jpg" /></div>
+                <div class="swiper-slide"><img src="images/image-product-4.jpg" /></div>
+              </div> -->
+               <div class="swiper-wrapper">
+              <?php foreach ($thumbnails as $thumb): ?>
+                <div class="swiper-slide">
+                  <img src="<?= $thumb ?>" />
+                </div>
+              <?php endforeach; ?>
+            </div>
+
+            </div>
+            <!-- Custom Next/Prev Buttons -->
+            <div class="swiper-button-prev">
+              <img src="images/icon-previous.svg" />
+            </div>
+            <div class="swiper-button-next">
+              <img src="images/icon-next.svg" />
+            </div>
+            <!-- Thumbnails in Lightbox -->
+            <div class="swiper thumbSwiperLightbox">
+              <!-- <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="images/image-product-1-thumbnail.jpg" /></div>
+                <div class="swiper-slide"><img src="images/image-product-2-thumbnail.jpg" /></div>
+                <div class="swiper-slide"><img src="images/image-product-3-thumbnail.jpg" /></div>
+                <div class="swiper-slide"><img src="images/image-product-4-thumbnail.jpg" /></div>
+              </div> -->
+                <div class="swiper-wrapper">
+              <?php foreach ($images as $img): ?>
+                <div class="swiper-slide">
+                  <img src="<?= $img ?>" />
+                </div>
+              <?php endforeach; ?>
+            </div>
             </div>
           </div>
         </div>
       </div>
 
-    </div>
 
 
+      <!-- Text col -->
+      <div class="col-12  col-md-5 offset-md-1 col-lg-5 my-auto  py-4 px-4 px-lg-0">
+        <span class="sub-title">
+          <?= htmlspecialchars($product['merk']); ?>
+        </span>
+        <h1>
 
-    <!-- Text col -->
-    <div class="col-12  col-md-5 offset-md-1 col-lg-5 my-auto  py-4 px-4 px-lg-0">
-      <span class="sub-title">
-         <?= htmlspecialchars($product['merk']); ?>
-      </span>
-      <h1>
-        
-         <?= htmlspecialchars($product['name']); ?>
-      </h1>
-      <p>
-        <?= htmlspecialchars($product['details']); ?>
-      </p>
+          <?= htmlspecialchars($product['name']); ?>
+        </h1>
+        <p>
+          <?= htmlspecialchars($product['details']); ?>
+        </p>
 
-      <div
-        class="price-section d-flex flex-row flex-md-column align-items-center justify-content-between align-items-md-start justify-content-md-start ">
-        <span class="d-flex align-items-center gap-3 mb-1">
-          <span class="current-price">€&nbsp;<?= $final_price ?>.00</span>
-          <span class="discount">
-             <?=  $discountPercent ?>%
+        <div
+          class="price-section d-flex flex-row flex-md-column align-items-center justify-content-between align-items-md-start justify-content-md-start ">
+          <span class="d-flex align-items-center gap-3 mb-1">
+            <span class="current-price">€&nbsp;<?= $final_price ?></span>
+            <span class="discount">
+              <?= $discountPercent ?>%
+            </span>
           </span>
-        </span>
-        <span class="original-price">€&nbsp;<?= $price ?>
-        </span>
+          <span class="original-price">€&nbsp;<?= $original_price_formatted ?>
+          </span>
+        </div>
+
+
+        <form  data-quantity-form method="post" action="add-to-cart.php"
+          class="quantity-addcart d-flex flex-column flex-md-row align-items-center gap-3 mt-4 flex-wrap">
+
+          <!-- Product info -->
+          <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+          <input type="hidden" name="product_merk" value="<?= htmlspecialchars($product['merk']); ?>">
+          <input type="hidden" name="product_image" value="<?= $product['image_path']; ?>">
+          <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']); ?>">
+          <input type="hidden" name="product_details" value="<?= htmlspecialchars($product['details']); ?>">
+          <input type="hidden" name="final_price" value="<?= $final_price ?>">
+          <input type="hidden" name="price" value="<?= $original_price ?>">
+          <input type="hidden" name="discounts" value="<?= $discountPercent ?>">
+
+
+          <!-- Quantity -->
+          <span class="qty-box  ">
+            <img src="images/icon-minus.svg" class="qty-btn minus" />
+
+            <input type="number" id="qtyInput" name="quantity" value="<?= $quantityInCart; ?>" min="1" />
+
+            <img src="images/icon-plus.svg" class="qty-btn plus" />
+          </span>
+
+          <!-- Add / Update Button -->
+          <button type="submit" class="add-to-cart-btn">
+            <span class="d-flex align-items-center gap-3 justify-content-center">
+              <img src="images/icon-cart.svg" alt="Cart Icon" class="cart_icon">
+              <?= $buttonText; ?>
+            </span>
+          </button>
+        </form>
+
+
+
       </div>
-
-
-      <form data-quantity-form method="post" action="add-to-cart.php"
-        class="quantity-addcart d-flex flex-column flex-md-row align-items-center gap-3 mt-4 flex-wrap">
-
-        <!-- Product info -->
-        <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
-        <input type="hidden" name="product_merk" value="<?= htmlspecialchars($product['merk']); ?>">
-        <input type="hidden" name="product_image" value="<?= $product['image_path']; ?>">
-        <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']); ?>">
-        <input type="hidden" name="product_details" value="<?= htmlspecialchars($product['details']); ?>">
-        <input type="hidden" name="final_price" value="<?= $final_price ?>">
-        <input type="hidden" name="price" value="<?= $price ?>">
-         <input type="hidden" name="discounts" value="<?= $discount ?>">
-        
-
-        <!-- Quantity -->
-        <span class="qty-box  ">
-          <img src="images/icon-minus.svg" class="qty-btn minus" />
-
-          <input type="number" id="qtyInput" name="quantity" value="<?= $quantityInCart; ?>" min="1" />
-
-          <img src="images/icon-plus.svg" class="qty-btn plus" />
-        </span>
-
-        <!-- Add / Update Button -->
-        <button type="submit" class="add-to-cart-btn">
-          <span class="d-flex align-items-center gap-3 justify-content-center">
-            <img src="images/icon-cart.svg" alt="Cart Icon" class="cart_icon">
-            <?= $buttonText; ?>
-          </span>
-        </button>
-      </form>
-
-
-
     </div>
   </div>
-</div>
 
 </body>
 <footer>
-    <script src="/schoenen/script.js"></script>
+  <script src="/schoenen/script.js"></script>
 </footer>
 
 </html>

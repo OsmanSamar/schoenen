@@ -142,8 +142,17 @@ document.querySelectorAll(".quantity-addcart").forEach(x=>{
     fetch('/schoenen/add-to-cart.php',{
       method:"POST",
       body:data
-    }).then(res=>res.json()).then(data=>{
-      console.log(data)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+           //Reload after the addition is successful
+      location.reload();
     })
   })
 })
+
+
+if (data.status === 200) {
+  location.reload();
+}
